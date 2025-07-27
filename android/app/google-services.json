@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "548649379368",
+    "project_id": "silifkesepetireact",
+    "storage_bucket": "silifkesepetireact.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:548649379368:android:45b32472aee97bc34a771d",
+        "android_client_info": {
+          "package_name": "com.ssreact"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "548649379368-6d16b1jsq4npojnt31b7sto23g36nq7n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzzhE8Dtjb_BKQ2EXz0jh_nF3qL2zKqg4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "548649379368-6d16b1jsq4npojnt31b7sto23g36nq7n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

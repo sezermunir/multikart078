@@ -1,0 +1,17 @@
+{
+  "extends": "@react-native/typescript-config/tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",  // Proje kök dizini
+    "paths": {
+      "@App/*": ["App/*"],
+      "@src/*": ["src/*"],
+      "@theme/*": ["src/theme/*"],
+      "@style/*": ["src/style/*"],
+      "@utils/*": ["src/utils/*"],
+      "@assets/*": ["src/assets/*"],
+      "@commonComponents/*": ["src/commonComponents/*"],
+      "@otherComponent/*": ["src/otherComponent/*"],
+      "underscore": ["node_modules/lodash"]
+    }
+  }
+}
