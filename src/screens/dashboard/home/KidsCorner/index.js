@@ -3,7 +3,7 @@ import { View, Text, FlatList, TouchableOpacity, ActivityIndicator } from 'react
 import styles from './style';
 import { Product } from '@commonComponents';
 import { useValues } from '@App';
-import { SHOPIFY_ADMIN_API_TOKEN } from '@env';
+import { SHOPIFY_ADMIN_API_TOKEN, SHOPIFY_STORE_URL } from '@env';
 
 export default kidsCorner = (props) => {
   const [products, setProducts] = useState([]);

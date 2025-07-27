@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Image, ActivityIndicator, Text } from 'react-native';
 import Swiper from 'react-native-swiper';
 import styles from './styles';
-import { SHOPIFY_ADMIN_API_TOKEN } from '@env';
+import { SHOPIFY_ADMIN_API_TOKEN, SHOPIFY_STORE_URL } from '@env';
 
 export const getVariantInfo = async (variantId) => {
   const cleanVariantId = variantId.replace('gid://shopify/ProductVariant/', '').split('?')[0];

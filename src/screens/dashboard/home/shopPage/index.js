@@ -14,7 +14,7 @@ import { Header } from '@commonComponents';
 
 import { useTranslation } from 'react-i18next';
 import { windowHeight } from '@theme/appConstant';
-import { SHOPIFY_ADMIN_API_TOKEN } from '@env';
+import { SHOPIFY_ADMIN_API_TOKEN, SHOPIFY_STORE_URL } from '@env';
 
 export default function ProductListPage({ navigation, route }) {
   const { colors } = useTheme();

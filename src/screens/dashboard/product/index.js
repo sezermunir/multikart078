@@ -14,7 +14,7 @@ import ProductDetail from './productDetail';
 import ReViewSection from './reviewSection';
 import ButtonContainer from './ButtonContainer';
 import { CommonContext } from '@App';
-import { SHOPIFY_ADMIN_API_TOKEN } from '@env';
+import { SHOPIFY_ADMIN_API_TOKEN, SHOPIFY_STORE_URL } from '@env';
 
 export const getVariantInfo = async (variantId) => {
   const cleanVariantId = variantId.replace('gid://shopify/ProductVariant/', '').split('?')[0];

@@ -3,7 +3,7 @@
     import styles from './style';
     import { ProductHorizontal } from '@commonComponents';
     import { useValues } from '@App';
-    import { SHOPIFY_ADMIN_API_TOKEN } from '@env';
+    import { SHOPIFY_ADMIN_API_TOKEN, SHOPIFY_STORE_URL } from '@env';
     
     export default dealOfDay = (props) => {
       const [products, setProducts] = useState([]);
