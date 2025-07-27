@@ -14,6 +14,7 @@ import { Header } from '@commonComponents';
 
 import { useTranslation } from 'react-i18next';
 import { windowHeight } from '@theme/appConstant';
+import { SHOPIFY_ADMIN_API_TOKEN } from '@env';
 
 export default function ProductListPage({ navigation, route }) {
   const { colors } = useTheme();
@@ -27,8 +28,8 @@ export default function ProductListPage({ navigation, route }) {
   // Ürünleri çekme fonksiyonu
   useEffect(() => {
     const fetchProducts = async () => {
-      const apiUrl = `https://rxj4xi-xa.myshopify.com/admin/api/2023-01/products.json?collection_id=${categoryId}`;
-      const apiToken = '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';
+      const apiUrl = `${SHOPIFY_STORE_URL}/admin/api/2023-01/products.json?collection_id=${categoryId}`;
+      const apiToken = SHOPIFY_ADMIN_API_TOKEN;
 
       try {
         const response = await fetch(apiUrl, {
@@ -66,8 +67,8 @@ export default function ProductListPage({ navigation, route }) {
     };
 
     const fetchCategoryName = async () => {
-      const apiUrl = `https://rxj4xi-xa.myshopify.com/admin/api/2023-01/collections/${categoryId}.json`;
-      const apiToken = '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';
+      const apiUrl = `${SHOPIFY_STORE_URL}/admin/api/2023-01/collections/${categoryId}.json`;
+      const apiToken = SHOPIFY_ADMIN_API_TOKEN;
 
       try {
         const response = await fetch(apiUrl, {

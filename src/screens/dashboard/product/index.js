@@ -14,12 +14,13 @@ import ProductDetail from './productDetail';
 import ReViewSection from './reviewSection';
 import ButtonContainer from './ButtonContainer';
 import { CommonContext } from '@App';
+import { SHOPIFY_ADMIN_API_TOKEN } from '@env';
 
 export const getVariantInfo = async (variantId) => {
   const cleanVariantId = variantId.replace('gid://shopify/ProductVariant/', '').split('?')[0];
-  const variantApiUrl = `https://rxj4xi-xa.myshopify.com/admin/api/2023-01/variants/${cleanVariantId}.json`;
+  const variantApiUrl = `${SHOPIFY_STORE_URL}/admin/api/2023-01/variants/${cleanVariantId}.json`;
   console.log('variantApiUrl:', variantApiUrl);
-  const apiToken = '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';
+  const apiToken = SHOPIFY_ADMIN_API_TOKEN;
   
 
   try {

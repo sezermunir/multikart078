@@ -13,7 +13,7 @@
     
       // Shopify API'den ürünleri çekmek için fonksiyon
       const fetchNewArrivals = async () => {
-        const apiUrl = `https://rxj4xi-xa.myshopify.com/admin/api/2023-01/products.json?collection_id=509079224622`;
+        const apiUrl = `${SHOPIFY_STORE_URL}/admin/api/2023-01/products.json?collection_id=509079224622`;
         const apiToken = SHOPIFY_ADMIN_API_TOKEN;
     
         
