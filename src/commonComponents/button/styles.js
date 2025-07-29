@@ -7,7 +7,8 @@ import {
 import appColors from "@theme/appColors";
 import appFonts from "@theme/appFonts";
 
-export default onBoardingStyles = StyleSheet.create({
+
+const onBoardingStyles = StyleSheet.create({
     button: {
         borderRadius: windowHeight(4),
         marginTop: windowHeight(10),
@@ -21,3 +22,5 @@ export default onBoardingStyles = StyleSheet.create({
         color: appColors.white
     },
 });
+
+export default onBoardingStyles;

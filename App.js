@@ -9,7 +9,7 @@ import {
   imageRTLStyle,
   viewSelfRTLStyle,
 } from './src/style/rtlStyle';
-import { LogLevel, OneSignal } from 'react-native-onesignal';
+// import { LogLevel, OneSignal } from 'react-native-onesignal'; // ⛔️ Geçici olarak kaldırıldı
 import {
   SHOPIFY_ADMIN_API_TOKEN,
   SHOPIFY_FRONT_TOKEN,
@@ -20,7 +20,7 @@ import {
 
 export const CommonContext = createContext({});
 
-//LogBox.ignoreAllLogs();
+// LogBox.ignoreAllLogs();
 
 const App = () => {
   const [isRTL, setIsRTL] = useState(false);
@@ -68,16 +68,20 @@ const App = () => {
   };
 
   useEffect(() => {
-    getValue('darkMode')
-      .then((res) => JSON.parse(res))
-      .then((val) => {
-        if (val !== null) {
-          setIsDark(val);
-        }
-      });
+    getValue('darkMode').then((res) => {
+      try {
+        const parsed = JSON.parse(res);
+        if (parsed !== null) setIsDark(parsed);
+      } catch (e) {
+        console.warn('darkMode parse hatası:', e);
+      }
+    });
   }, []);
 
   useEffect(() => {
+    if (!SHOPIFY_ADMIN_API_TOKEN || !SHOPIFY_URL) {
+      console.error('Shopify ortam değişkenleri eksik');
+    }
     setToken(SHOPIFY_ADMIN_API_TOKEN);
     setFrontToken(SHOPIFY_FRONT_TOKEN);
     setShopifyUrl(SHOPIFY_URL);
@@ -85,7 +89,8 @@ const App = () => {
     setApiUrl(API_URL);
   }, []);
 
-  // OneSignal Kurulumu
+  // OneSignal kaldırıldı
+  /*
   useEffect(() => {
     OneSignal.Debug.setLogLevel(LogLevel.Verbose);
     OneSignal.initialize('62f08d95-9fda-42ac-bd7d-d3af79e34072');
@@ -94,6 +99,7 @@ const App = () => {
       console.log('Bildirim tıklandı:', event);
     });
   }, []);
+  */
 
   const linking = {
     prefixes: ['https://www.silifkesepeti.com', 'silifkesepeti://'],

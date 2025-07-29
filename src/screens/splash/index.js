@@ -1,19 +1,19 @@
-import React, {useEffect, useRef} from 'react';
-import {Animated, View, Text, Easing} from 'react-native';
-import {useValues} from '@App';
-import {useTranslation} from 'react-i18next';
+import React, { useEffect, useRef } from 'react';
+import { Animated, View, Text, Easing } from 'react-native';
+import { useValues } from '@App';
+import { useTranslation } from 'react-i18next';
 import styles from './styles';
-import {getValue, setValue} from '@utils/localStorage';
+import { getValue, setValue } from '@utils/localStorage';
 
-export default function Splash({navigation}) {
+export default function Splash({ navigation }) {
   const opacity = useRef(new Animated.Value(0)).current;
   const scale = useRef(new Animated.Value(0.5)).current;
   const rotate = useRef(new Animated.Value(0)).current;
   const textTranslateY = useRef(new Animated.Value(-50)).current;
   const textOpacity = useRef(new Animated.Value(0)).current;
 
-  const {setIsRTL, setCurrSymbol, setCurrValue, setIsFirstLaunch} = useValues();
-  const {i18n} = useTranslation();
+  //const { setIsRTL, setCurrSymbol, setCurrValue, setIsFirstLaunch } = useValues();
+  const { i18n } = useTranslation();
 
   useEffect(() => {
     runAnimation();
@@ -68,25 +68,42 @@ export default function Splash({navigation}) {
 
   const getSelectedLanguage = async () => {
     const lang = await getValue('language');
-    if (lang) {
-      const parsed = JSON.parse(lang);
+    try {
+      const parsed = lang ? JSON.parse(lang) : null;
       if (parsed) i18n.changeLanguage(parsed);
+    } catch (e) {
+      console.warn('Language parse hatası:', e);
     }
   };
 
   const getRtlValue = async () => {
     const rtl = await getValue('rtl');
-    if (rtl) setIsRTL(JSON.parse(rtl));
+    try {
+      const parsed = rtl ? JSON.parse(rtl) : false;
+      setIsRTL(parsed);
+    } catch (e) {
+      console.warn('RTL parse hatası:', e);
+    }
   };
 
   const getCurrencySymbol = async () => {
     const symbol = await getValue('curruncySymbol');
-    if (symbol) setCurrSymbol(JSON.parse(symbol));
+    try {
+      const parsed = symbol ? JSON.parse(symbol) : '₺';
+      setCurrSymbol(parsed);
+    } catch (e) {
+      console.warn('Currency Symbol parse hatası:', e);
+    }
   };
 
   const getCurrencyValue = async () => {
     const value = await getValue('curruncyValue');
-    if (value) setCurrValue(JSON.parse(value));
+    try {
+      const parsed = value ? JSON.parse(value) : 1;
+      setCurrValue(parsed);
+    } catch (e) {
+      console.warn('Currency Value parse hatası:', e);
+    }
   };
 
   const checkIsFirstLaunch = async () => {
@@ -112,10 +129,7 @@ export default function Splash({navigation}) {
           width: 200,
           height: 200,
           opacity,
-          transform: [
-            {scale},
-            {rotate: rotateInterpolate},
-          ],
+          transform: [{ scale }, { rotate: rotateInterpolate }],
         }}
         resizeMode="contain"
       />
@@ -125,9 +139,10 @@ export default function Splash({navigation}) {
           fontSize: 28,
           fontWeight: 'bold',
           marginTop: 20,
-          transform: [{translateY: textTranslateY}],
+          transform: [{ translateY: textTranslateY }],
           opacity: textOpacity,
-        }}>
+        }}
+      >
         Silifke Sepeti
       </Animated.Text>
     </View>

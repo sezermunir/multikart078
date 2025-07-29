@@ -3,28 +3,27 @@ package com.ssreact;
 import android.os.Bundle;
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
-import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint;
-import com.facebook.react.defaults.DefaultReactActivityDelegate;
+import com.facebook.react.ReactRootView;
 import com.swmansion.gesturehandler.react.RNGestureHandlerEnabledRootView;
 
 public class MainActivity extends ReactActivity {
-
   @Override
   protected String getMainComponentName() {
-    return "SimpleRNApp"; // Burada uygulamanın JS tarafındaki component adı olacak
-  }
-
-  @Override
-  protected ReactActivityDelegate createReactActivityDelegate() {
-    return new DefaultReactActivityDelegate(
-      this,
-      getMainComponentName(),
-      DefaultNewArchitectureEntryPoint.getFabricEnabled() // Fabric ayarı
-    );
+    return "SimpleRNApp"; // App.js içindeki component adı
   }
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(null); // react-native-screens uyumluluğu için null gönderiyoruz
+    super.onCreate(null);
+  }
+
+  @Override
+  protected ReactActivityDelegate createReactActivityDelegate() {
+    return new ReactActivityDelegate(this, getMainComponentName()) {
+      @Override
+      protected ReactRootView createRootView() {
+        return new RNGestureHandlerEnabledRootView(getContext());
+      }
+    };
   }
 }
