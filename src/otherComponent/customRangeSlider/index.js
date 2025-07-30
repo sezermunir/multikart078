@@ -1,13 +1,7 @@
 import {StyleSheet, View, TextInput} from 'react-native';
 import React from 'react';
 import {PanGestureHandler} from 'react-native-gesture-handler';
-import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  useAnimatedGestureHandler,
-  useAnimatedProps,
-  runOnJS,
-} from 'react-native-reanimated';
+
 import styles from './styles';
 
 export default function customRangeSlider({

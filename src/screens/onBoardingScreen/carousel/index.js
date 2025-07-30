@@ -1,29 +1,47 @@
-import React, { useState } from 'react';
-import { View, Image, Text, Dimensions } from 'react-native';
-import Carousel from 'react-native-reanimated-carousel';
+import React, { useState, useRef } from 'react';
+import {
+  View,
+  Image,
+  Text,
+  Dimensions,
+  FlatList,
+  Animated,
+} from 'react-native';
 import styles from './styles';
 import Data from '@utils/json';
 
 const SLIDER_WIDTH = Dimensions.get('window').width;
 const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7);
-const ITEM_HEIGHT = 390; // Aynı yükseklik değeri
+const ITEM_HEIGHT = 390;
 
 export default function CarouselItem(props) {
   const { colors, t } = props;
   const [key, setKey] = useState(0);
+  const flatListRef = useRef(null);
+
+  const onViewRef = useRef(({ viewableItems }) => {
+    if (viewableItems.length > 0) {
+      setKey(viewableItems[0].index);
+    }
+  });
+
+  const viewConfigRef = useRef({ viewAreaCoveragePercentThreshold: 50 });
 
   return (
     <View style={styles.container}>
       <View style={styles.view}>
-        <Carousel
-          width={ITEM_WIDTH}
-          height={ITEM_HEIGHT}
+        <FlatList
+          ref={flatListRef}
           data={Data.data}
-          scrollAnimationDuration={500}
-          mode="parallax"
-          onSnapToItem={(index) => setKey(index)}
+          keyExtractor={(item, index) => index.toString()}
+          horizontal
+          pagingEnabled
+          snapToAlignment="center"
+          showsHorizontalScrollIndicator={false}
+          onViewableItemsChanged={onViewRef.current}
+          viewabilityConfig={viewConfigRef.current}
           renderItem={({ item }) => (
-            <View style={styles.imageContainer}>
+            <View style={[styles.imageContainer, { width: ITEM_WIDTH, height: ITEM_HEIGHT }]}>
               <Image source={item.imgUrl} style={styles.sliderImage} />
             </View>
           )}

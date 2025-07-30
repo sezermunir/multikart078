@@ -3,7 +3,7 @@ import {View, Text, FlatList, TouchableOpacity} from 'react-native';
 import styles from './styles';
 import {windowHeight} from '@theme/appConstant';
 import Check from '../../../../assets/icons/check';
-import Animated, {StretchInX} from 'react-native-reanimated';
+
 import {useValues} from '@App';
 import appColors from '@theme/appColors';
 

@@ -5,7 +5,7 @@ apply plugin: "com.facebook.react"
 apply plugin: "com.google.gms.google-services"
 
 
-def hermesEnabled = project.hasProperty("hermesEnabled") ? project.getProperty("hermesEnabled") : "true"
+def IS_NEW_ARCHITECTURE_ENABLED = System.properties.get("IS_NEW_ARCHITECTURE_ENABLED") ?: "false"
 def enableProguardInReleaseBuilds = false
 def jscFlavor = 'io.github.react-native-community:jsc-android:2026004.+'
 
@@ -25,8 +25,30 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
-        buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", "false"
+        buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", "${IS_NEW_ARCHITECTURE_ENABLED}"
+        buildConfigField "boolean", "IS_HERMES_ENABLED", "false"
+
+       
+
+        ndk {
+            // Uygulamanızın desteklemesi gereken ABI'leri belirtin.
+            // arm64-v8a genellikle en çok kullanılan modern Android cihazlar içindir.
+            // Diğerleri (armeabi-v7a, x86, x86_64) daha geniş uyumluluk sağlar.
+            abiFilters "arm64-v8a", "armeabi-v7a", "x86", "x86_64"
+        }
     }
+
+    
+
+    packagingOptions {
+        pickFirst '**/libc++_shared.so'
+        pickFirst '**/libevent_extra.so'
+        pickFirst '**/libevent.so'
+        doNotStrip "**/libreact_featureflagsjni.so"
+
+
+    }
+
 
     signingConfigs {
         debug {

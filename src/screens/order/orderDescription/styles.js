@@ -2,7 +2,7 @@ import {StyleSheet} from 'react-native';
 import {fontSizes, windowHeight, windowWidth} from '@theme/appConstant';
 import appColors from '@theme/appColors';
 import appFonts from '@theme/appFonts';
-import { color } from 'react-native-reanimated';
+
 
 export default orderDescriptionStyles = StyleSheet.create({
   container: {

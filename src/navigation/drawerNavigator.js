@@ -1,5 +1,4 @@
 import React from 'react';
-import {createDrawerNavigator} from '@react-navigation/drawer';
 import Tab from './tabStackNavigator';
 import {windowWidth} from '@theme/appConstant';
 import DrawerContent from '@otherComponent/drawerComponents';
